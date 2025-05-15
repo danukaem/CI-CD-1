@@ -24,7 +24,7 @@ jobs:
       run: ./mvnw clean package -DskipTests
 
     - name: Deploy to EC2 via WinRM
-      uses: appleboy/winrm-action@master
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USER }}
@@ -55,7 +55,7 @@ jobs:
         target: "C:/application/"
 
     - name: Replace old app and restart services
-      uses: appleboy/winrm-action@master
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USER }}
