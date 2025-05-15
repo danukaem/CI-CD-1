@@ -1,0 +1,32 @@
+name: Deploy Akanita App to EC2
+
+on:
+  push:
+    branches:
+      - main  # or your default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+      - name: Deploy Backend JAR
+        run: |
+          scp -o StrictHostKeyChecking=no backend/demo-0.0.1-SNAPSHOT.jar Administrator@13.220.82.176:/path/to/backend/demo-0.0.1-SNAPSHOT.jar
+          ssh Administrator@13.220.82.176 "powershell -Command 'Stop-Process -Name java -Force; Start-Process java -ArgumentList \"-jar C:\\path\\to\\backend\\demo-0.0.1-SNAPSHOT.jar\" -NoNewWindow -WindowStyle Hidden'"
+
+      - name: Deploy Frontend
+        run: |
+          scp -r -o StrictHostKeyChecking=no frontend/dist/demo-frontend/* Administrator@13.220.82.176:/path/to/nginx/html/
+
+      - name: Restart Nginx
+        run: |
+          ssh Administrator@13.220.82.176 "powershell -Command 'Stop-Service nginx; Start-Service nginx'"
