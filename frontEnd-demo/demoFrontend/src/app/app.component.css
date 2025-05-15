@@ -1,0 +1,25 @@
+.user-in-div {
+  border: 1px solid rgb(44, 89, 239);
+  padding: 10px;
+}
+
+.user-out-div {
+  /* border: 1px solid rgb(216, 214, 40); */
+  margin: 10px;
+}
+
+.edit-btn {
+  background-color: rgb(117, 145, 236);
+  border: none;
+  margin: 2px;
+  border-radius: 2px;
+  padding: 2px 10px;
+}
+
+.delete-btn {
+  background-color: rgb(243, 122, 122);
+  border: none;
+  margin: 2px;
+  border-radius: 2px;
+  padding: 2px 10px;
+}

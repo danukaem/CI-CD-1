@@ -1,0 +1,23 @@
+<div>
+  <h1>Welcome to My Angular App</h1>
+  
+  <div>
+    <input type="text" [(ngModel)]="userName" placeholder="Enter name" />
+    <input type="number" [(ngModel)]="userAge" placeholder="Enter age" />
+
+
+    <button class="add-btn" (click)="addUser(userName,userAge)">Add User</button>
+
+
+  </div>
+
+  <div *ngFor="let user of users" class="user-out-div" >
+  <div  class="user-in-div">
+    id: {{ user.id }} - name: {{ user.name }} - age: {{ user.age }}
+    <button class="edit-btn" (click)="editUser(user)">edit</button>
+    <button class="delete-btn" (click)="deleteUser(user)">delete</button>
+  </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
