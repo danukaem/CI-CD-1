@@ -74,10 +74,24 @@ jobs:
         command: |
           taskkill /F /IM java.exe
           timeout /t 3
-          # move C:\application\backend_new\demo-0.0.1-SNAPSHOT.jar C:/application/FE/demo-frontend
-          # move /Y C:\application\backend_new\demo-0.0.1-SNAPSHOT.jar C:/application\
-          move /Y C:/application/FE/frontEnd-demo/demoFrontend/dist/demo-frontend/** C:/application/FE/demo-frontend
-          move /Y C:/application/demo/demo/target/demo-0.0.1-SNAPSHOT.jar C:/application/
-          start /B java -jar C:\application\demo-0.0.1-SNAPSHOT.jar  
+          REM Move frontend build files to FE/demo-frontend
+          if not exist C:\application\FE\demo-frontend mkdir C:\application\FE\demo-frontend
+          for %f in (C:\application\FE\frontEnd-demo\demoFrontend\dist\demo-frontend\*) do move /Y "%f" C:\application\FE\demo-frontend\
+          REM Move backend jar (if needed)
+          move /Y C:\application\demo\demo\target\demo-0.0.1-SNAPSHOT.jar C:\application\
+          REM Start Spring Boot app
+          start /B java -jar C:\application\demo-0.0.1-SNAPSHOT.jar
+          REM Reload Nginx
           cd C:\application\nginx-1.28.0
           nginx.exe -s reload
+          
+          
+          # taskkill /F /IM java.exe
+          # timeout /t 3
+          # # move C:\application\backend_new\demo-0.0.1-SNAPSHOT.jar C:/application/FE/demo-frontend
+          # # move /Y C:\application\backend_new\demo-0.0.1-SNAPSHOT.jar C:/application\
+          # move /Y C:/application/FE/frontEnd-demo/demoFrontend/dist/demo-frontend/** C:/application/FE/demo-frontend
+          # move /Y C:/application/demo/demo/target/demo-0.0.1-SNAPSHOT.jar C:/application/
+          # start /B java -jar C:\application\demo-0.0.1-SNAPSHOT.jar  
+          # cd C:\application\nginx-1.28.0
+          # nginx.exe -s reload
