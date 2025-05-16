@@ -52,31 +52,34 @@ jobs:
         source: "frontEnd-demo/demoFrontend/dist/demo-frontend/**"
         target: "C:/application/FE/"
 
-    # - name: Upload Spring Boot jar
-    #   uses: appleboy/scp-action@master
-    #   with:
-    #     host: ${{ secrets.EC2_HOST }}
-    #     username: ${{ secrets.EC2_USER }}
-    #     # password: ${{ secrets.EC2_PASSWORD }}
-    #     key: ${{ secrets.EC2_SSH_KEY }}
-    #     port: 22
-    #     source: "demo/demo/target/demo-0.0.1-SNAPSHOT.jar"
-    #     target: "C:/application/"
+    - name: Upload Spring Boot jar
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        # password: ${{ secrets.EC2_PASSWORD }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: 22
+        source: "demo/demo/target/demo-0.0.1-SNAPSHOT.jar"
+        target: "C:/application/"
 
-    # - name: Replace old app and restart services
-    #   uses: appleboy/ssh-action@master
-    #   with:
-    #     host: ${{ secrets.EC2_HOST }}
-    #     username: ${{ secrets.EC2_USER }}
-    #     # password: ${{ secrets.EC2_PASSWORD }}
-    #     key: ${{ secrets.EC2_SSH_KEY }}
-    #     port: 22
-    #     command: |
-    #       taskkill /F /IM java.exe
-    #       timeout /t 3
-    #       move C:\application\backend_new\demo-0.0.1-SNAPSHOT.jar C:/application/FE/demo-frontend
-    #       move /Y C:\application\backend_new\demo-0.0.1-SNAPSHOT.jar C:/application\
-    #       start /B java -jar C:\application\demo-0.0.1-SNAPSHOT.jar
+    - name: Replace old app and restart services
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        # password: ${{ secrets.EC2_PASSWORD }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: 22
+        command: |
+          taskkill /F /IM java.exe
+          timeout /t 3
+          # move C:\application\backend_new\demo-0.0.1-SNAPSHOT.jar C:/application/FE/demo-frontend
+          # move /Y C:\application\backend_new\demo-0.0.1-SNAPSHOT.jar C:/application\
+          move /Y C:/application/FE/frontEnd-demo/demoFrontend/dist/demo-frontend/** C:/application/FE/demo-frontend
+          move /Y C:/application/demo/demo/target/demo-0.0.1-SNAPSHOT.jar C:/application/
+          # start /B java -jar C:\application\demo-0.0.1-SNAPSHOT.jar
+          start java -jar C:\application\demo-0.0.1-SNAPSHOT.jar
     
-    #       cd C:\application\nginx-1.28.0
-    #       nginx.exe -s reload
+          cd C:\application\nginx-1.28.0
+          nginx.exe -s reload
