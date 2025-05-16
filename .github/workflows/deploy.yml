@@ -84,6 +84,7 @@ jobs:
           # REM Reload Nginx
           # cd C:\application\nginx-1.28.0
           # nginx.exe -s reload
+
                   
           taskkill /F /IM java.exe
           timeout /t 3
