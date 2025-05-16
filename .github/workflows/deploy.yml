@@ -34,8 +34,9 @@ jobs:
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USER }}
-        password: ${{ secrets.EC2_PASSWORD }}
-        port: 5985
+        # password: ${{ secrets.EC2_PASSWORD }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: 22
         command: |
           mkdir C:\application\frontend_new
           mkdir C:\application\backend_new
@@ -65,8 +66,9 @@ jobs:
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USER }}
-        password: ${{ secrets.EC2_PASSWORD }}
-        port: 5985
+        # password: ${{ secrets.EC2_PASSWORD }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: 22
         command: |
           taskkill /F /IM java.exe
           timeout /t 3
