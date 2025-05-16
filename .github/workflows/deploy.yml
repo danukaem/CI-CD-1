@@ -77,5 +77,6 @@ jobs:
     #       move C:\application\backend_new\demo-0.0.1-SNAPSHOT.jar C:/application/FE/demo-frontend
     #       move /Y C:\application\backend_new\demo-0.0.1-SNAPSHOT.jar C:/application\
     #       start /B java -jar C:\application\demo-0.0.1-SNAPSHOT.jar
+    
     #       cd C:\application\nginx-1.28.0
     #       nginx.exe -s reload
