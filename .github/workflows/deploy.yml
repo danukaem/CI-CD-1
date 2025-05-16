@@ -71,7 +71,7 @@ jobs:
         # password: ${{ secrets.EC2_PASSWORD }}
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
-        command: |                 
+        command: >                 
           cmd /c "taskkill /F /IM java.exe ^
             && timeout /t 3 ^
             && move /Y C:\application\FE\frontEnd-demo\demoFrontend\dist\demo-frontend\* C:\application\FE\demo-frontend ^
