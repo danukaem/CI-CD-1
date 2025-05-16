@@ -49,7 +49,7 @@ jobs:
         # password: ${{ secrets.EC2_PASSWORD }}
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
-        source: "frontEnd-demo"
+        source: "frontEnd-demo/demoFrontend/dist/demo-frontend/**"
         target: "C:/application/FE/"
 
     # - name: Upload Spring Boot jar
