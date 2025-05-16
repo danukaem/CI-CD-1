@@ -94,4 +94,5 @@ jobs:
           move /Y C:/application/demo/demo/target/demo-0.0.1-SNAPSHOT.jar C:/application/
           start /B java -jar C:\application\demo-0.0.1-SNAPSHOT.jar  
           cd C:\application\nginx-1.28.0
-          nginx.exe -s reload
+          # nginx.exe -s reload
+          start nginx
