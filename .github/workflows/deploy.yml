@@ -14,7 +14,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Build Angular App
-      working-directory: frontEnd-demo/demoFrontend
+      working-directory: ./
       run: |
         npm install
         npm run build --prod
@@ -49,7 +49,7 @@ jobs:
         # password: ${{ secrets.EC2_PASSWORD }}
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
-        source: "frontEnd-demo//demoFrontend/dist/demo-frontend/*"
+        source: "dist/demo-frontend/*"
         target: "C:/application/FE/"
 
     - name: Upload Spring Boot jar
