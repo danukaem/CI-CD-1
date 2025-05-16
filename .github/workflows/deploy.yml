@@ -19,6 +19,12 @@ jobs:
         npm install
         npm run build --prod
 
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '21'
+
     - name: Build Spring Boot App
       working-directory: demo/demo
       run: ./mvnw clean package -DskipTests
