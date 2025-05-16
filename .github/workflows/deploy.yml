@@ -60,7 +60,7 @@ jobs:
         # password: ${{ secrets.EC2_PASSWORD }}
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
-        source: "ddd/demo-0.0.1-SNAPSHOT.jar"
+        source: "demo/demo/target/demo-0.0.1-SNAPSHOT.jar"
         target: "C:/application/"
 
     # - name: Replace old app and restart services
