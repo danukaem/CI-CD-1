@@ -27,6 +27,7 @@ public class UserController {
 
     @GetMapping("/")
     public String redirectToUser(){
+        System.out.println("test print");
         return "redirect:/user";
 
     }
