@@ -68,7 +68,7 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
         script: |
-          mkdir C:\application\abc
+          if not exist C:\application\abc mkdir C:\application\abc
 
 
     - name: Replace old app and restart services
