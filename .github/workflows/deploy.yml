@@ -78,7 +78,7 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
-        command: |
+        script: |
           taskkill /F /IM java.exe
           timeout /t 10
           move /Y frontEnd-demo/demoFrontend/dist/demo-frontend/* C:/application/FE/demo-frontend
