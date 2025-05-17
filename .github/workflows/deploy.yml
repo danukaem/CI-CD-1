@@ -71,7 +71,7 @@ jobs:
         # password: ${{ secrets.EC2_PASSWORD }}
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
-        script: |  
+        run: |  
           cd C:\application\nginx-1.28.0
           Start-Process start /B nginx" -Wait
           # cmd /c "taskkill /F /IM java.exe 
