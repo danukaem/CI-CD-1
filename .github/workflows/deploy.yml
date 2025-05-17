@@ -79,6 +79,8 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
         script: |
+          taskkill /F /IM java.exe || exit 0
+          timeout /t 10
           if not exist C:/application/abc mkdir C:/application/abc
           dir frontEnd-demo\demoFrontend\dist\demo-frontend
           move /Y C:/application/frontEnd-demo/demoFrontend/dist/demo-frontend/* C:/application/abc || echo MOVE FAILED
