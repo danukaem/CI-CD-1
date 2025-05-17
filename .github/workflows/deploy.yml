@@ -47,7 +47,7 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
-        source: "frontEnd-demo/demoFrontend/dist/demo-frontend/**"
+        source: "frontEnd-demo/demoFrontend/dist/demo-frontend/*"
         target: "C:/application/FE/"
 
     - name: Upload Spring Boot jar
@@ -81,8 +81,10 @@ jobs:
         script: |
           # taskkill /F /IM java.exe || exit 0
           # timeout /t 10
-          move /Y frontEnd-demo/demoFrontend/dist/demo-frontend/* C:\application\abc
-          move /Y C:\application\backend_new\demo-0.0.1-SNAPSHOT.jar C:/application\abc
+          if not exist C:/application/abc mkdir C:/application/abc
+          dir frontEnd-demo\demoFrontend\dist\demo-frontend
+          move /Y C:/application/frontEnd-demo/demoFrontend/dist/demo-frontend/* C:/application/abc || echo MOVE FAILED
+          move /Y C:/application/backend_new/demo-0.0.1-SNAPSHOT.jar C:/application/abc || echo MOVE FAILED
           start /B java -jar C:\application\demo-0.0.1-SNAPSHOT.jar
           cd C:\application\nginx-1.28.0
           nginx.exe -s reload
