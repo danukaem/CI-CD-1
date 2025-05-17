@@ -13,17 +13,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Build Angular App
-      working-directory: frontEnd-demo/demoFrontend
-      run: |
-        npm install
-        npm run build --prod
+    # - name: Build Angular App
+    #   working-directory: frontEnd-demo/demoFrontend
+    #   run: |
+    #     npm install
+    #     npm run build --prod
 
-    - name: Setup Java
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: '21'
+    # - name: Setup Java
+    #   uses: actions/setup-java@v3
+    #   with:
+    #     distribution: 'temurin'
+    #     java-version: '21'
 
     # - name: Build Spring Boot App
     #   working-directory: demo/demo
