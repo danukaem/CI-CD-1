@@ -37,8 +37,7 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
         script: |
-          if not exist C:\application\frontend_new mkdir C:\application\frontend_new
-          if not exist C:\application\backend_new mkdir C:\application\backend_new
+          if not exist C:\application\frontend_new mkdir C:\application\frontend_new & if not exist C:\application\backend_new mkdir C:\application\backend_new
 
     - name: Upload Angular frontend
       uses: appleboy/scp-action@master
