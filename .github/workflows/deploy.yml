@@ -38,8 +38,8 @@ jobs:
         port: 22
         script: |
           cmd /c "
-          (if not exist C:\application\frontend_new mkdir C:\application\frontend_new) & 
-          (if not exist C:\application\backend_new mkdir C:\application\backend_new)
+            (if not exist C:\application\frontend_new mkdir C:\application\frontend_new) & 
+            (if not exist C:\application\backend_new mkdir C:\application\backend_new)
           "
 
     - name: Upload Angular frontend
