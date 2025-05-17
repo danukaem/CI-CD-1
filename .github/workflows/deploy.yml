@@ -98,7 +98,6 @@ jobs:
     #       #   && start /B java -jar C:\application\demo-0.0.1-SNAPSHOT.jar 
     #       #   && cd C:\application\nginx-1.28.0 
     #       #   && start /B nginx"
-
           
     #       # taskkill /F /IM java.exe
     #       # timeout /t 3
