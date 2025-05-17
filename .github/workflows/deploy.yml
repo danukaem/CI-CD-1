@@ -79,10 +79,7 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
         script: |
-          
-          if not exist "C:/application/abcd" (
-             mkdir "C:/application/abcd"
-          )
+          if not exist "C:/application/abcd" mkdir "C:/application/abcd"
           dir frontEnd-demo/demoFrontend/dist/demo-frontend
           move /Y C:/application/frontEnd-demo/demoFrontend/dist/demo-frontend/* C:/application/abc || echo MOVE FAILED
           move /Y C:/application/backend_new/demo-0.0.1-SNAPSHOT.jar C:/application/abc || echo MOVE FAILED
