@@ -102,6 +102,8 @@ jobs:
         port: 22
         # script: |
         #   cmd /c "(cd C:/application) & (C:\application\runJar.bat)" 
-        inlineScript: |
+        # inlineScript: |
+        #   java -jar C:\application\demo-0.0.1-SNAPSHOT.jar
+        script: |
           java -jar C:\application\demo-0.0.1-SNAPSHOT.jar   
     
