@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -21,7 +22,12 @@ public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public List<User> getUser() {
-        return userRepo.findAll();
+        List<User> all = userRepo.findAll();
+        all.forEach(user -> {
+             user.setName(user.getName() + " - *");
+        });
+
+        return all;
     }
 
     public Page<User> getUser(PageRequest pageRequest) {
