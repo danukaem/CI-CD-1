@@ -12,6 +12,8 @@ export class AppComponent {
 
   userName: string = '';
   userAge: number = 0;
+  url ="https://akanita.online/";
+  // url ="https://3.90.41.113/";
 
   constructor(private http: HttpClient) {
     this.getUsers();
@@ -20,7 +22,7 @@ export class AppComponent {
   editUser(user: { id: number; name: string; age: number }) {
     const updatedUser = { ...user, name: 'Updated Name' };
     this.http
-      .put(`https://akanita.online/user/${user.id}`, updatedUser)
+      .put(`${this.url}user/${user.id}`, updatedUser)
       .subscribe(
         (response) => {
           console.log('User updated successfully:', response);
@@ -33,7 +35,7 @@ export class AppComponent {
   }
 
   deleteUser(user: { id: number; name: string; age: number }) {
-    this.http.delete(`https://akanita.online/user/${user.id}`).subscribe(
+    this.http.delete(`${this.url}user/${user.id}`).subscribe(
       (response) => {
         console.log('User deleted successfully:', response);
         this.getUsers();
@@ -45,7 +47,7 @@ export class AppComponent {
   }
   addUser(name: any, age: any) {
     const newUser = { name: name, age: age };
-    this.http.post('https://akanita.online/user', newUser).subscribe(
+    this.http.post(`${this.url}user`, newUser).subscribe(
       (response) => {
         console.log('User added successfully:', response);
         // Add the new user to the local list
@@ -58,7 +60,7 @@ export class AppComponent {
   }
 
   getUsers() {
-    this.http.get<any>('https://akanita.online/user').subscribe(
+    this.http.get<any>(`${this.url}user`).subscribe(
       (data) => {
         console.log('Fetched users:', data);
 
