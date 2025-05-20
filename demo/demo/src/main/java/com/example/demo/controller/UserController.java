@@ -38,15 +38,16 @@ public class UserController {
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
 
-//    @GetMapping("user")
-//    public ResponseEntity<Response<Page<User>>> getUserPage(@RequestParam("page") int page,
-//                                                            @RequestParam("size") int size,
-//                                                            @RequestParam(value = "sort" , defaultValue = "name") String sort) {
-//
-//        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sort));
-//        Response<Page<User>> userResponse = new Response<>("success", userService.getUser(pageRequest), HttpStatus.OK);
-//        return new ResponseEntity<>(userResponse, HttpStatus.OK);
-//    }
+    @GetMapping("user")
+    public ResponseEntity<Response<Page<User>>> getUserPage(@RequestParam("page") int page,
+                                                            @RequestParam("size") int size,
+                                                            @RequestParam(value = "sort" , defaultValue = "name") String sort) {
+
+        System.out.println("CI/CD pipeline is working!");
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(sort));
+        Response<Page<User>> userResponse = new Response<>("success", userService.getUser(pageRequest), HttpStatus.OK);
+        return new ResponseEntity<>(userResponse, HttpStatus.OK);
+    }
 
     @PostMapping("user")
     public ResponseEntity<Response<User>> saveUser(@Valid @RequestBody User user) {
