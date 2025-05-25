@@ -82,15 +82,18 @@ jobs:
           # cmd /c "(cd C:/application ) & (move /Y C:\application\FE\frontEnd-demo\demoFrontend\dist\demo-frontend\* C:\application\FE\demo-frontend\ || echo MOVE FAILED) & (move /Y C:\application\demo\demo\target\demo-0.0.1-SNAPSHOT.jar C:\application\ || echo MOVE FAILED) & (cd C:/application) & (C:\application\runJar.bat) & (timeout /t 25 || echo "waiting for jar running, continuing...") & (cd C:\application\nginx-1.28.0) & (nginx.exe -s reload) & (timeout /t 5 || echo "waiting for jar running, continuing...")"
           # cmd /c "(taskkill /F /IM java.exe || echo "Java process not found, continuing...") & (timeout /t 10 || echo "waiting, continuing...") & (if not exist "C:/application/abcd" mkdir "C:/application/abcd") & (dir frontEnd-demo/demoFrontend/dist/demo-frontend) & (cd C:/application ) & (move /Y C:\application\FE\frontEnd-demo\demoFrontend\dist\demo-frontend\* C:\application\FE\demo-frontend\ || echo MOVE FAILED) & (move /Y C:\application\demo\demo\target\demo-0.0.1-SNAPSHOT.jar C:\application\ || echo MOVE FAILED) & (cd C:/application) & (C:\application\runJar.bat) & (timeout /t 25 || echo "waiting for jar running, continuing...") & (cd C:\application\nginx-1.28.0) & (nginx.exe -s reload) & (timeout /t 5 || echo "waiting for jar running, continuing...") "
 
-    # - name: Run Springboot Jar
-    #   uses: appleboy/ssh-action@master
-    #   with:
-    #     host: ${{ secrets.EC2_HOST }}
-    #     username: ${{ secrets.EC2_USER }}
-    #     key: ${{ secrets.EC2_SSH_KEY }}
-    #     port: 22
-    #     # script: |
-    #     #   cmd /c "(cd C:/application) & (C:\application\runJar.bat)" 
-    #     script: |
-    #       java -jar C:\application\demo-0.0.1-SNAPSHOT.jar   
+    - name: Run Springboot Jar
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: 22
+        # script: |
+        #   cmd /c "(cd C:/application) & (C:\application\runJar.bat)" 
+        # script: |
+        #   java -jar C:\application\demo-0.0.1-SNAPSHOT.jar --server.port=8081
+        script: |
+          cmd /c "(cd C:/application ) & (start /B java -jar demo-0.0.1-SNAPSHOT.jar --server.port=8081 > app.log 2>&1)"
+        
     
