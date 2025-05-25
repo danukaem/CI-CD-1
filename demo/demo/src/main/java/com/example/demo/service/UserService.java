@@ -24,7 +24,7 @@ public class UserService {
     public List<User> getUser() {
         List<User> all = userRepo.findAll();
         all.forEach(user -> {
-             user.setName(user.getName() + " - *** - $$$ - %%%");
+            user.setName(user.getName());
         });
 
         return all;
