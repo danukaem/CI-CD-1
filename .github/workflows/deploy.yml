@@ -81,17 +81,14 @@ jobs:
           # cmd /c "(cd C:/application ) & (move /Y C:\application\FE\frontEnd-demo\demoFrontend\dist\demo-frontend\* C:\application\FE\demo-frontend\ || echo MOVE FAILED) & (move /Y C:\application\demo\demo\target\demo-0.0.1-SNAPSHOT.jar C:\application\ || echo MOVE FAILED) & (cd C:/application) & (runJar5.bat || echo "waiting for runJar running, continuing...") & (cd C:\application\nginx-1.28.0) & (nginx.exe -s reload)"
           
 
-    - name: Run Springboot Jar
-      uses: garygrossgarten/github-action-powershell-ssh@v1
+    - name: Restart Spring Boot Windows Service
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
-        inline: |
-          Stop-Process -Name "java" -Force -ErrorAction SilentlyContinue
-          Start-Process "java" -ArgumentList "-jar demo-0.0.1-SNAPSHOT.jar --server.port=8081" -WindowStyle Hidden
-        # script: |
-        #   cmd /c "(cd C:/application ) & (start /B java -jar demo-0.0.1-SNAPSHOT.jar --server.port=8081 > app.log 2>&1)"
+        script: |
+          Restart-Service -Name AkanitaSpringBootService
         
     
