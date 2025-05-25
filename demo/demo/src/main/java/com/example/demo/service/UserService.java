@@ -26,7 +26,6 @@ public class UserService {
         all.forEach(user -> {
              user.setName(user.getName());
         });
-
         return all;
     }
 
