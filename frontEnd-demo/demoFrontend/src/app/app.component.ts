@@ -13,7 +13,6 @@ export class AppComponent {
   userName: string = '';
   userAge: number = 0;
   url ="https://akanita.online/";
-  // url ="https://3.90.41.113/";
 
   constructor(private http: HttpClient) {
     this.getUsers();
