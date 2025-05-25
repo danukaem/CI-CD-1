@@ -89,6 +89,6 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
         script: |
-          Restart-Service -Name AkanitaSpringBootService
+          powershell -Command "Restart-Service -Name 'AkanitaSpringBootService'"
         
     
