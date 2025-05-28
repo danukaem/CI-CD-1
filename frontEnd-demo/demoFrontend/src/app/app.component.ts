@@ -12,7 +12,8 @@ export class AppComponent {
 
   userName: string = '';
   userAge: number = 0;
-  url ="https://akanita.online/";
+  // url ="https://akanita.online/";
+  url ="http://localhost:8081/";
 
   constructor(private http: HttpClient) {
     this.getUsers();
