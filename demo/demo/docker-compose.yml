@@ -6,8 +6,6 @@ services:
     container_name: mysql
     environment:
       MYSQL_DATABASE: userdb
-      #      MYSQL_USER: root
-      #      MYSQL_PASSWORD: 1234
       MYSQL_ROOT_PASSWORD: 1234
     ports:
       - "3307:3306"
