@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,7 @@ export class AppComponent {
 
   userName: string = '';
   userAge: number = 0;
-  url ="https://akanita.online/";
-  // url ="http://localhost:8081/";
+  url =environment.apiUrl; // Use environment variable for URL
 
   constructor(private http: HttpClient) {
     this.getUsers();
