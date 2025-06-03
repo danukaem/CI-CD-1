@@ -11,7 +11,11 @@ RUN npm install
 COPY . .
 
 # Build the application
-RUN npm run build
+# RUN npm run build
+
+ARG CONFIGURATION=production
+RUN npm run build -- --configuration=$CONFIGURATION
+
 
 # Use an Nginx image to serve the built app
 FROM nginx:alpine
